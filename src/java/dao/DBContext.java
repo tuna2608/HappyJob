@@ -32,7 +32,7 @@ public class DBContext {
             System.out.println("Success");
         } catch (Exception e) {
             System.out.println("Failed");
-
         }
     }
 }
+

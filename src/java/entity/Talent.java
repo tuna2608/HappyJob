@@ -4,17 +4,10 @@
  */
 package entity;
 
-//    TalentID INT identity(1,1) PRIMARY KEY,
-//    Title NVARCHAR(255),
-//	Img NVARCHAR(255),
-//    [Description] NTEXT,
-//    CreatedAt DATETIME,
-//    AccountID INT,
-//    [Status] NVARCHAR(255),
-//	Reason NVARCHAR(255),
-//    FOREIGN KEY (AccountID) REFERENCES Account(AccountID)
-//);
-
+/**
+ *
+ * @author ASUS
+ */
 public class Talent {
     private int talentID;
     private String title;
@@ -24,7 +17,6 @@ public class Talent {
     private int accountID;
     private String status;
     private String reason;
-    
 
     public Talent() {
     }
@@ -39,6 +31,8 @@ public class Talent {
         this.status = status;
         this.reason = reason;
     }
+    
+    
 
     public int getTalentID() {
         return talentID;
@@ -103,5 +97,12 @@ public class Talent {
     public void setReason(String reason) {
         this.reason = reason;
     }
+
+    @Override
+    public String toString() {
+        return "Talent{" + "talentID=" + talentID + ", title=" + title + ", img=" + img + ", description=" + description + ", createdAt=" + createdAt + ", accountID=" + accountID + ", status=" + status + ", reason=" + reason + '}';
+    }
     
+
+  
 }

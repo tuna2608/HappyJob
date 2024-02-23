@@ -6,19 +6,10 @@ package entity;
 
 import java.sql.Date;
 
-//CREATE TABLE Account (
-//    AccountID INT identity(1,1) PRIMARY KEY,
-//    [Password] VARCHAR(255) NOT NULL,
-//    Email VARCHAR(255) NOT NULL,
-//    [Name] VARCHAR(255),
-//    Dob DATE,
-//    Gender NVARCHAR(255),
-//    RoleID INT,
-//    Status VARCHAR(255),
-//	Verifycode VARCHAR(255),
-//    FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
-//);
-
+/**
+ *
+ * @author ASUS
+ */
 public class Account {
     private int accountID;
     private String password;
@@ -26,14 +17,16 @@ public class Account {
     private String name;
     private String dob;
     private String gender;
+    // private String SecurityQuestion;
     private int roleID;
     private String status;
-    private String verifyCode;
+    private String verificationCode;
+    //private long verificationCodeExpirationTime;
 
     public Account() {
     }
 
-    public Account(int accountID, String password, String email, String name, String dob, String gender, int roleID, String status, String verifyCode) {
+    public Account(int accountID, String password, String email, String name, String dob, String gender, int roleID, String status, String verificationCode) {
         this.accountID = accountID;
         this.password = password;
         this.email = email;
@@ -42,9 +35,24 @@ public class Account {
         this.gender = gender;
         this.roleID = roleID;
         this.status = status;
-        this.verifyCode = verifyCode;
+        this.verificationCode = verificationCode;
+        // this.verificationCodeExpirationTime = verificationCodeExpirationTime;
     }
 
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
+//    public long getVerificationCodeExpirationTime() {
+//        return verificationCodeExpirationTime;
+//    }
+//    public void setVerificationCodeExpirationTime(long verificationCodeExpirationTime) {
+//        this.verificationCodeExpirationTime = verificationCodeExpirationTime;
+//    }
     public int getAccountID() {
         return accountID;
     }
@@ -85,6 +93,7 @@ public class Account {
         this.dob = dob;
     }
 
+
     public String getGender() {
         return gender;
     }
@@ -101,33 +110,19 @@ public class Account {
         this.roleID = roleID;
     }
 
-    public String getVerifyCode() {
-        return verifyCode;
-    }
-
-    public void setVerifyCode(String verifyCode) {
-        this.verifyCode = verifyCode;
-    }
-
     public String getStatus() {
-         if (status == "1") {
-            return "Active";
-        } else if (status == "2") {
-            return "Locked";
-        } else if (status == "3") {
-            return "Gmail Login";
-        } else {
-            return "Unverified";
-        }
+        return status;
     }
 
-    public void setStatus(String Status) {
-        this.status = Status;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
-        return "Account{" + "accountID=" + accountID + ", password=" + password + ", email=" + email + ", name=" + name + ", dob=" + dob + ", gender=" + gender + ", roleID=" + roleID + ", status=" + status + ", verifyCode=" + verifyCode + '}';
+
+        return "Account{" + "accountID=" + accountID + ", password=" + password + ", email=" + email + ", name=" + name + ", dob=" + dob + ", gender=" + gender + ", roleID=" + roleID + ", status=" + status + ", verificationCode=" + verificationCode + '}';
     }
-    
+
+
 }
