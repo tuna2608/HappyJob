@@ -31,15 +31,17 @@ public class TalentDAO {
 
             while (rs.next()) {
                 tList.add(new Talent(rs.getInt(1),
-                        rs.getNString(2),
-                        rs.getNString(3),
-                        rs.getNString(4),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
                         rs.getString(5),
                         rs.getInt(6),
-                        rs.getNString(7),
-                        rs.getNString(8)
-                )
-                );
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getInt(10)
+                ));
+
             }
             return tList;
         } catch (Exception e) {
@@ -59,14 +61,17 @@ public class TalentDAO {
 
             while (rs.next()) {
                 return new Talent(rs.getInt(1),
-                        rs.getNString(2),
-                        rs.getNString(3),
-                        rs.getNString(4),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
                         rs.getString(5),
                         rs.getInt(6),
-                        rs.getNString(7),
-                        rs.getNString(8)
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getInt(10)
                 );
+
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -86,15 +91,145 @@ public class TalentDAO {
 
             while (rs.next()) {
                 tList.add(new Talent(rs.getInt(1),
-                        rs.getNString(2),
-                        rs.getNString(3),
-                        rs.getNString(4),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
                         rs.getString(5),
                         rs.getInt(6),
-                        rs.getNString(7),
-                        rs.getNString(8)
-                )
-                );
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getInt(10)
+                ));
+
+            }
+            return tList;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public ArrayList<Talent> listTalentRatingAscending() {
+        ArrayList<Talent> tList = new ArrayList<>();
+        String sql = "SELECT *\n"
+                + "FROM Talent\n"
+                + "ORDER BY Rating ASC;";
+        try {
+            con = (Connection) new DBContext().getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                tList.add(new Talent(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getInt(10)
+                ));
+
+            }
+            return tList;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public ArrayList<Talent> listTalentRatingDecreasing() {
+        ArrayList<Talent> tList = new ArrayList<>();
+        String sql = "SELECT *\n"
+                + "FROM Talent\n"
+                + "ORDER BY Rating DESC;";
+        try {
+            con = (Connection) new DBContext().getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                tList.add(new Talent(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getInt(10)
+                ));
+
+            }
+            return tList;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public ArrayList<Talent> listTalentPriceAscending() {
+        ArrayList<Talent> tList = new ArrayList<>();
+        String sql = "SELECT T.*\n"
+                + "FROM Talent T\n"
+                + "INNER JOIN ServicePackage SP ON T.TalentID = SP.TalentID\n"
+                + "WHERE SP.Type = 'basic'\n"
+                + "ORDER BY SP.Price ASC;";
+        try {
+            con = (Connection) new DBContext().getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                tList.add(new Talent(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getInt(10)
+                ));
+
+            }
+            return tList;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public ArrayList<Talent> listTalentPriceDecreasing() {
+        ArrayList<Talent> tList = new ArrayList<>();
+        String sql = "SELECT T.*\n"
+                + "FROM Talent T\n"
+                + "INNER JOIN ServicePackage SP ON T.TalentID = SP.TalentID\n"
+                + "WHERE SP.Type = 'basic'\n"
+                + "ORDER BY SP.Price DESC;";
+        try {
+            con = (Connection) new DBContext().getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                tList.add(new Talent(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getInt(10)
+                ));
+
             }
             return tList;
         } catch (Exception e) {

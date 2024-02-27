@@ -23,8 +23,8 @@
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
                             </div>
                             <form action="listTalentServlet" method="post" class="search-jobs-form">
-                                <div class="row flex justify-content-center gap-2 mb-5">
-                                    <div class="input-search-form">
+                                <div class="row flex justify-content-center mb-5">
+                                    <div class="col-6">
                                         <input 
                                             type="text" 
                                             class="form-control form-control-lg" 
@@ -51,7 +51,7 @@
                                             <option>Full Time</option>
                                         </select>
                                     </div>-->
-                                    <div class="">
+                                    <div class="col-3">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search Job</button>
                                     </div>
                                 </div>

@@ -22,14 +22,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     width: 300px;
     height: 325px;
     /*background-color: blue;*/
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 
 .talent-img{
     margin-top: 10px;
     width:100%;
     height: 150px;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 
 .talent-person{
@@ -86,11 +86,43 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     height: 100px;
 }
 
-.input-search-form{
-    width: 70%;
-}
-
 .img-talent-choiced{
     width: 100%;
     height: 400px;
+}
+
+
+.filter-price{
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.items-filter{
+
+}
+
+.seat {
+    background: white;
+    border-radius: 5px;
+    outline: 0.3mm solid rgb(180, 180, 180);
+    cursor: pointer;
+}
+
+.filter-price input:checked+label {
+    background: rgb(28, 185, 120);
+    outline: none;
+}
+
+input {
+    display: none;
+}
+
+.seat{
+    padding: 0px 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

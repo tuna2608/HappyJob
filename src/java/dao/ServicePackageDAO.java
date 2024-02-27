@@ -48,6 +48,36 @@ public class ServicePackageDAO {
         }
         return null;
     }
+
+    public ServicePackage getPackageByIdBasic(int talentID) {
+        ArrayList<ServicePackage> sList = new ArrayList<>();
+        String sql = "SELECT *\n"
+                + "FROM ServicePackage\n"
+                + "WHERE TalentID = ?\n"
+                + "AND [Type] = 'basic';";
+        try {
+            con = (Connection) new DBContext().getConnection();
+            ps = con.prepareStatement(sql);
+
+            ps.setInt(1, talentID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new ServicePackage(rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getNString(3),
+                        rs.getNString(4),
+                        rs.getInt(5),
+                        rs.getInt(6),
+                        rs.getNString(7).toLowerCase(),
+                        rs.getInt(8)
+                );
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         ServicePackageDAO sd = new ServicePackageDAO();
         ArrayList<ServicePackage> lPackage = sd.listPackage(4);

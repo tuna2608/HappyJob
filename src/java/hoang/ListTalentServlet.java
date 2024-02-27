@@ -56,6 +56,13 @@ public class ListTalentServlet extends HttpServlet {
         TalentDAO td = new TalentDAO();
         ArrayList<Talent> lTalent = td.listAllTalent();
         System.out.println(lTalent);
+        
+        int pageSize = 10;
+        int numPage = 1;
+        
+        request.getSession().setAttribute("pageSize", pageSize);
+        request.getSession().setAttribute("numPage", numPage);
+        
         request.getSession().setAttribute("listTalent", lTalent);
         request.getRequestDispatcher("Talent.jsp").forward(request, response);
     }
@@ -73,12 +80,17 @@ public class ListTalentServlet extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         String keyParam = new String(request.getParameter("keySearch"));
-//        String keyParamCheck = new String(request.getParameter("keySearch"));
-//        System.out.println(keyParamCheck);
         System.out.println(keyParam);
 
         TalentDAO td = new TalentDAO();
         ArrayList<Talent> tList = td.searchTalent(keyParam);
+
+        int pageSize = 10;
+        int numPage = 1;
+        
+        request.getSession().setAttribute("pageSize", pageSize);
+        request.getSession().setAttribute("numPage", numPage);
+        
         request.getSession().setAttribute("listTalent", tList);
         response.sendRedirect("Talent.jsp");
     }
