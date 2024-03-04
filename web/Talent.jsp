@@ -14,18 +14,15 @@
 <section class="site-section" id="talent-list">
     <c:set var="page" value="${param.page}"/>
     <c:set var="pagesize" value="${param.pagesize}"/>
-    <c:set var="typefilter" value="${param.type}"/>
     <c:if test="${empty page||page==null}">
         <c:set var="page" value="1" />
-        <c:set var="pagesize" value="10"/>
-        <c:set var="typefilter" value="ratingDescreasing"/>
+        <c:set var="pagesize" value="8"/>
     </c:if>
-    
-    <c:if test="${empty typefilter||typefilter==null}">
-        <c:set var="typefilter" value="ratingDescreasing"/>
-    </c:if>
-    
+
     <c:set var="numpage" value="${(listTalent.size()/pagesize)+1}"/>
+
+    <c:set var="typeFil" value="${param.type}"/>
+
 
     <div class="container">
         <div class="row mb-5 justify-content-center">
@@ -36,55 +33,58 @@
         <%@include file="components/Filter.jsp" %>
     </div>
     <div class="container-list-talent">
-        <c:forEach items="${listTalent}" var="t" begin="${(page-1)*10}" 
-                   end="${(page-1)*10+9>listTalent.size()
+        <c:forEach items="${listTalent}" var="t" begin="${(page-1)*8}" 
+                   end="${(page-1)*8+7>listTalent.size()
                           ?listTalent.size()-1 
-                          :(page-1)*10+9}">
-            <div class="talent-items">
-                <a href="detailTalentServlet?tID=${t.getTalentID()}#nav-basic"><img class="talent-img" src="${t.getImg()}"></a>
-                <div class="talent-person">
-                    <img class="talent-person-avt" src="images/person_1.jpg">
-                    <div class="talent-person-name"> ${showAccount.getAccountById(t.getAccountID()).getName()}</div>
-                </div>
-                <a href="detailTalentServlet?tID=${t.getTalentID()}#nav-basic"><div class="talent-title">${t.getTitle()}</div></a>
-                <div class="talent-star">
-                    <div class="black-color">
-                        <div class="icon-star"></div>
-                        <div>${t.getRating()}</div>
-                    </div>
-                    <div>
-                        (385)
-                    </div>
-                </div>
-                <div class="black-color">From $${showService.getPackageByIdBasic(t.getTalentID()).getPrice()}</div>
-            </div>
+                          :(page-1)*8+7}">
+                   <div class="talent-items">
+                       <a href="detailTalentServlet?tID=${t.getTalentID()}#nav-basic"><img class="talent-img" src="${t.getImg()}"></a>
+                       <div class="talent-person">
+                           <img class="talent-person-avt" src="images/person_1.jpg">
+                           <div class="talent-person-name"> ${showAccount.getAccountById(t.getAccountID()).getName()}</div>
+                       </div>
+                       <a href="detailTalentServlet?tID=${t.getTalentID()}#nav-basic"><div class="talent-title">${t.getTitle()}</div></a>
+                       <div class="talent-star">
+                           <div class="black-color">
+                               <div class="icon-star"></div>
+                               <div>${t.getRating()}</div>
+                           </div>
+                           <div>
+                               (385)
+                           </div>
+                       </div>
+                       <div class="black-color">From $${showService.getPackageByIdBasic(t.getTalentID()).getPrice()}</div>
+                   </div>
         </c:forEach>
     </div>
 
     <div class="row flex justify-content-center pagination-wrap">
         <div class="col-3 text-center text-md-left mb-4 mb-md-0">
-            <span>Showing ${(page-1)*10+1} - ${(page-1)*10+9>listTalent.size()
-                          ?listTalent.size() 
-                          :(page-1)*10+10} Of ${listTalent.size()} Jobs</span>
+            <span>Showing ${(page-1)*8+1} - ${(page-1)*8+8>listTalent.size()
+                            ?listTalent.size() 
+                            :(page-1)*8+8} Of ${listTalent.size()} Jobs</span>
         </div>
 
         <div class="col-6 text-center text-md-right">
             <div class="custom-pagination ml-auto">
                 <c:if test="${page != 1}">
-                    <a href="?page=${(page-1)}&pagesize=${pagesize}" class="prev">Prev</a> 
+                    <a href="?page=${(page-1)}&pagesize=${pagesize}&type=${typeFil}" class="prev">Prev</a> 
                 </c:if>
                 <div class="d-inline-block">
                     <c:forEach var="p" begin="1" end="${numpage}">
                         <c:if test="${p == page}">
-                            <a href="?page=${p}&pagesize=${pagesize}&type=${typefilter}" class="mx-2 active">${p}</a>
+                            <a href="?page=${p}&pagesize=${pagesize}&type=${typeFil}" class="mx-2 active">${p}</a>
                         </c:if>
                         <c:if test="${p != page}">
-                            <a href="?page=${p}&pagesize=${pagesize}&type=${typefilter}" class="mx-2 ">${p}</a>
+                            <a href="?page=${p}&pagesize=${pagesize}&type=${typeFil}" class="mx-2 ">${p}</a>
                         </c:if>
                         <!--<A href="?page=${(page+p)}&pagesize=${pagesize}" class="mx-2">${page+p}</a>-->
                     </c:forEach>
                 </div>
-                <a href="#" class="next">Next</a>
+                <c:if test="${page != numpage}">
+                    <a href="?page=${(page+1)}&pagesize=${pagesize}&type=${typeFil}" class="next">Next</a> 
+                </c:if>
+                <!--<a href="#" class="next">Next</a>-->
             </div>
         </div>
     </div>

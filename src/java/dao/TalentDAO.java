@@ -6,10 +6,11 @@ package dao;
 
 import entity.Talent;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -39,7 +40,36 @@ public class TalentDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getInt(10)
+                        rs.getDouble(10)
+                ));
+
+            }
+            return tList;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
+    public ArrayList<Talent> listAllTalentActive() {
+        ArrayList<Talent> tList = new ArrayList<>();
+        String sql = "SELECT * FROM Talent WHERE [Status] = 'active';";
+        try {
+            con = (Connection) new DBContext().getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                tList.add(new Talent(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getDouble(10)
                 ));
 
             }
@@ -69,7 +99,7 @@ public class TalentDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getInt(10)
+                        rs.getDouble(10)
                 );
 
             }
@@ -81,7 +111,7 @@ public class TalentDAO {
 
     public ArrayList<Talent> searchTalent(String value) {
         ArrayList<Talent> tList = new ArrayList<>();
-        String sql = "SELECT * FROM talent where title like ? ";
+        String sql = "SELECT * FROM talent where [Status] = 'active' and title like ? ";
         try {
             con = (Connection) new DBContext().getConnection();
             ps = con.prepareStatement(sql);
@@ -99,7 +129,7 @@ public class TalentDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getInt(10)
+                        rs.getDouble(10)
                 ));
 
             }
@@ -114,6 +144,7 @@ public class TalentDAO {
         ArrayList<Talent> tList = new ArrayList<>();
         String sql = "SELECT *\n"
                 + "FROM Talent\n"
+                + "where [Status] = 'active'"
                 + "ORDER BY Rating ASC;";
         try {
             con = (Connection) new DBContext().getConnection();
@@ -130,7 +161,7 @@ public class TalentDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getInt(10)
+                        rs.getDouble(10)
                 ));
 
             }
@@ -145,6 +176,7 @@ public class TalentDAO {
         ArrayList<Talent> tList = new ArrayList<>();
         String sql = "SELECT *\n"
                 + "FROM Talent\n"
+                + "where [Status] = 'active'"
                 + "ORDER BY Rating DESC;";
         try {
             con = (Connection) new DBContext().getConnection();
@@ -161,7 +193,7 @@ public class TalentDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getInt(10)
+                        rs.getDouble(10)
                 ));
 
             }
@@ -178,6 +210,7 @@ public class TalentDAO {
                 + "FROM Talent T\n"
                 + "INNER JOIN ServicePackage SP ON T.TalentID = SP.TalentID\n"
                 + "WHERE SP.Type = 'basic'\n"
+                + "and T.[Status] = 'active'"
                 + "ORDER BY SP.Price ASC;";
         try {
             con = (Connection) new DBContext().getConnection();
@@ -194,7 +227,7 @@ public class TalentDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getInt(10)
+                        rs.getDouble(10)
                 ));
 
             }
@@ -211,6 +244,7 @@ public class TalentDAO {
                 + "FROM Talent T\n"
                 + "INNER JOIN ServicePackage SP ON T.TalentID = SP.TalentID\n"
                 + "WHERE SP.Type = 'basic'\n"
+                + "and T.[Status] = 'active'"
                 + "ORDER BY SP.Price DESC;";
         try {
             con = (Connection) new DBContext().getConnection();
@@ -227,7 +261,7 @@ public class TalentDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getInt(10)
+                        rs.getDouble(10)
                 ));
 
             }
@@ -237,10 +271,27 @@ public class TalentDAO {
         }
         return null;
     }
+    
+    public ArrayList<Talent> sortByRating(ArrayList<Talent> talents) {
+        Collections.sort(talents, new Comparator<Talent>() {
+            @Override
+            public int compare(Talent t1, Talent t2) {
+                // Sorting in descending order
+                return Double.compare(t2.getRating(), t1.getRating());
+            }
+        });
+        return talents;
+    }
 
     public static void main(String[] args) {
         TalentDAO td = new TalentDAO();
-        ArrayList<Talent> tList = td.searchTalent("cáo");
+        ArrayList<Talent> tList = td.listAllTalent();
+        
         System.out.println(tList);
+        
+        ArrayList<Talent> taList = td.sortByRating(tList);
+        System.out.println(taList);
     }
+    
+    
 }

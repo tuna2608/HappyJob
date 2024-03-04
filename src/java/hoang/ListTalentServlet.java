@@ -54,7 +54,7 @@ public class ListTalentServlet extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         TalentDAO td = new TalentDAO();
-        ArrayList<Talent> lTalent = td.listAllTalent();
+        ArrayList<Talent> lTalent = td.listAllTalentActive();
         System.out.println(lTalent);
         
         int pageSize = 10;

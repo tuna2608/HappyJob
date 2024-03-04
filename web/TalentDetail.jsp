@@ -117,9 +117,8 @@
                         <!--<button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab" data-bs-target="#nav-disabled" type="button" role="tab" aria-controls="nav-disabled" aria-selected="false" disabled>Disabled</button>-->
                     </div>
                 </nav>
-                <div class="tab-content" id="nav-tabContent">
+                <div class="tab-content " id="nav-tabContent">
                     <c:forEach items="${listPackage}" var="p">
-
                         <c:if test="${p.getType()=='basic'}">
                             <div class="tab-pane fade show active" id="nav-basic" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
                                 <div class="bg-light p-3 border rounded mb-4">

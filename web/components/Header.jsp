@@ -31,6 +31,7 @@
         <link rel="stylesheet" href="fonts/line-icons/style.css">
         <link rel="stylesheet" href="css/owl.carousel.min.css">
         <link rel="stylesheet" href="css/animate.min.css">
+
         <link rel="stylesheet" href="css/style-of-hoang.css">
 
         <!-- MAIN CSS -->
@@ -65,7 +66,7 @@
                     <div class="row align-items-center">
                         <div class="site-logo col-6"><a href="#">HappyJob</a></div>
 
-                        <nav class="mx-auto site-navigation">
+                        <nav class="col-8 site-navigation">
                             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
                                 <li><a href="Home.jsp" class="nav-link active">Home</a></li>
 
@@ -75,12 +76,16 @@
                                         <li><a href="listTalentServlet#talent-list">Talent Listings</a></li>
                                         <li><a href="job-single.html">Dashboard</a></li>
                                         <li><a href="PostTalent.jsp">Post a Talent</a></li>
+                                        <c:if test="${account.getRoleID() == '1' || account.getRoleID() == '3'}">
+                                            <li><a href="History.jsp">History</a></li>
+                                            <li><a href="listWaiting">Waiting</a></li>
+                                        </c:if>
+
                                     </ul>
                                 </li>
 
                                 <li class="has-children">
                                     <a href="#">Blog</a>
-
                                     <ul class="dropdown">
                                         <li><a href="About.jsp">About</a></li>
                                         <li><a href="Blog.jsp">Blog Listings</a></li>
@@ -154,6 +159,7 @@
                                 </li>
 
                                 <li><a href="Contact.jsp">Contact</a></li>
+
                             </ul>
                         </nav>
 

@@ -39,6 +39,29 @@ public class CategoryDAO {
         return listA;
 
     }
+    
+    public Category getCategoryById(int categoryID) {
+        String sql = "SELECT * FROM category where categoryID = ?;";
+        try {
+            conn = (Connection) new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, categoryID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return new Category(
+                        rs.getInt(1),
+                        rs.getString(2)
+                );
+
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
 
     public static void main(String[] args) {
         CategoryDAO dao = new CategoryDAO();

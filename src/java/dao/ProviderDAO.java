@@ -61,7 +61,7 @@ public class ProviderDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getInt(10)
+                        rs.getDouble(10)
                 ));
 
             }

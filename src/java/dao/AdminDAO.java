@@ -100,7 +100,9 @@ public class AdminDAO {
                         rs.getInt(7),
                         rs.getString(8),
                         rs.getString(9),
-                        rs.getString(10));
+                        rs.getString(10)
+                        
+                );
             }
         } catch (Exception e) {
         }
@@ -232,7 +234,7 @@ public class AdminDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getInt(10)
+                        rs.getDouble(10)
                 ));
 
             }
@@ -263,7 +265,7 @@ public class AdminDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getInt(10)
+                        rs.getDouble(10)
                 ));
 
             }
@@ -293,7 +295,7 @@ public class AdminDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getInt(10)
+                        rs.getDouble(10)
                 );
             }
         } catch (Exception e) {
@@ -367,7 +369,7 @@ public class AdminDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getInt(10)
+                        rs.getDouble(10)
                 ));
             }
         } catch (Exception e) {
@@ -411,7 +413,7 @@ public class AdminDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getInt(10)
+                        rs.getDouble(10)
                 ));
             }
         } catch (Exception e) {

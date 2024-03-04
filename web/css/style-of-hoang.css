@@ -126,3 +126,66 @@ input {
     justify-content: center;
     align-items: center;
 }
+
+.nav-tab-history{
+    /*background-color: green;*/
+    display: flex;
+    justify-content: right;
+}
+
+.form-search-history{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-search-history{
+    width: 200px;
+}
+
+.btn-search-history{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-history{
+    width: 100%;
+    /*height: 500px;*/
+    /*background-color: aqua;*/
+}
+
+.history-items{
+    margin-bottom: 30px;
+    padding: 15px;
+    width: 100%;
+    /*height: 150px;*/
+    /*background-color: #007eff;*/
+    border-radius: 20px;
+    border: 2px solid black;
+}
+
+.name-provider{
+    margin-left: 10px;
+    color: black;
+}
+
+.provider-items{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    gap:20px;
+}
+
+.date-buy{
+    width: 20%;
+}
+
+.btn-delete{
+    padding: 20px 30px;
+    border: 1px solid black;
+    border-radius: 20px;
+    text-decoration: none;
+}
