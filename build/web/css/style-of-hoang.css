@@ -189,3 +189,28 @@ input {
     border-radius: 20px;
     text-decoration: none;
 }
+
+
+.container-contract{
+    padding: 20px;
+    width: 100%;
+    background-color: aqua;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+.btn-contract-form{
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    text-decoration: none;
+    
+}
+
+.btn-contract{
+    margin: 30px;
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-decoration: none;
+}

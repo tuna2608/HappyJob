@@ -43,6 +43,34 @@ public class OrderDAO {
         }
         return null;
     }
+    
+    public ArrayList<Order> listOrderById(int id) {
+        ArrayList<Order> oList = new ArrayList<>();
+        String sql = "SELECT * FROM orders where accountID = ?;";
+        try {
+            con = (Connection) new DBContext().getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                oList.add(new Order(
+                        rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getInt(3),
+                        rs.getDate(4),
+                        rs.getString(5)
+                ));
+
+            }
+            return oList;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
+    
     public static void main(String[] args) {
         OrderDAO od = new OrderDAO();
         ArrayList<Order> oList = od.listAllOrder();

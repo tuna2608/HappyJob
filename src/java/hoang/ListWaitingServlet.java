@@ -5,6 +5,7 @@
 package hoang;
 
 import dao.OrderDAO;
+import entity.Account;
 import entity.Order;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -62,7 +63,8 @@ public class ListWaitingServlet extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         OrderDAO od = new OrderDAO();
-        ArrayList<Order> oList = od.listAllOrder();
+        Account a = (Account) request.getSession().getAttribute("account");
+        ArrayList<Order> oList = od.listOrderById(a.getAccountID());
         System.out.println(oList);
         
         request.getSession().setAttribute("listOrder", oList);

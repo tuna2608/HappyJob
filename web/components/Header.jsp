@@ -159,6 +159,7 @@
                                 </li>
 
                                 <li><a href="Contact.jsp">Contact</a></li>
+                                <li><a href="Contract.jsp">Contract</a></li>
 
                             </ul>
                         </nav>

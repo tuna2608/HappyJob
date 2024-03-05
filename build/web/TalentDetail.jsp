@@ -141,7 +141,8 @@
                                             </strong>
                                         </li>
                                     </ul>
-                                    <button class="w-100 bg-dark text-white border-0 rounded-10">Continue</button>
+                                    <a href="Contract.jsp" class="prev btn-contract">Continue</a>
+                                    <!--<button class="w-100 bg-dark text-white border-0 rounded-10">Continue</button>-->
                                 </div>
                             </div>
                         </c:if>
@@ -167,7 +168,9 @@
                                             </strong>
                                         </li>
                                     </ul>
-                                    <button class="w-100 bg-dark text-white border-0 rounded-10">Continue</button>
+                                    <!--                                    <button class="w-100 bg-dark text-white border-0 rounded-10">Continue</button>-->
+                                    <a href="Contract.jsp" class="prev btn-contract">Continue</a>
+
                                 </div>
                             </div>
                         </c:if>
@@ -193,7 +196,7 @@
                                             </strong>
                                         </li>
                                     </ul>
-                                    <button class="w-100 bg-dark text-white border-0 rounded-10">Continue</button>
+                                    <a href="Contract.jsp" class="prev btn-contract">Continue</a>
                                 </div>
                             </div>
                         </c:if>
