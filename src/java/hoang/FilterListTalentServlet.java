@@ -39,7 +39,7 @@ public class FilterListTalentServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet FilterListTalentServlet</title>");            
+            out.println("<title>Servlet FilterListTalentServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet FilterListTalentServlet at " + request.getContextPath() + "</h1>");
@@ -61,21 +61,47 @@ public class FilterListTalentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        String typeFilter = (String) request.getParameter("type");
-        System.out.println(typeFilter);
-        
+        String typePriceFilter = (String) request.getParameter("typePrice");
+        String typeRatingFilter = (String) request.getParameter("typeRating");
+        int typeCategoryFilter = Integer.parseInt(request.getParameter("typeCategory"));
+        System.out.println(typeCategoryFilter);
+
         TalentDAO td = new TalentDAO();
-        ArrayList<Talent> talentFilter = new ArrayList<Talent>();
+        ArrayList<Talent> talentFilter = td.listAllTalentActive();
         
-        if(typeFilter.equalsIgnoreCase("ratingAscending")){
-            talentFilter = td.listTalentRatingAscending();
-        }else if(typeFilter.equalsIgnoreCase("ratingDecreasing")){
-            talentFilter = td.listTalentRatingDecreasing();
-        }else if(typeFilter.equalsIgnoreCase("priceAscending")){
-            talentFilter = td.listTalentPriceAscending();
-        }else if(typeFilter.equalsIgnoreCase("priceDecreasing")){
-            talentFilter = td.listTalentPriceDecreasing();
+        if (typeCategoryFilter != 0) {
+            talentFilter = td.filterCategory(talentFilter, typeCategoryFilter);
+            System.out.println(talentFilter);
         }
+
+        if (typePriceFilter != null) {
+            if (typePriceFilter.equalsIgnoreCase("priceDecreasing")) {
+                talentFilter = td.filterPriceDecreasing(talentFilter);
+            }
+
+            if (typePriceFilter.equalsIgnoreCase("priceAscending")) {
+                talentFilter = td.filterPriceAscending(talentFilter);
+            }
+
+            if (typePriceFilter.equalsIgnoreCase("price1000")) {
+                talentFilter = td.filterPrice1000(talentFilter);
+            }
+        }
+
+        if (typeRatingFilter != null) {
+            if (typeRatingFilter.equalsIgnoreCase("ratingDecreasing")) {
+                talentFilter = td.filterRatingDecreasing(talentFilter);
+            }
+
+            if (typeRatingFilter.equalsIgnoreCase("ratingAscending")) {
+                talentFilter = td.filterRatingAscending(talentFilter);
+            }
+
+            if (typeRatingFilter.equalsIgnoreCase("rating4")) {
+                talentFilter = td.filterRating4(talentFilter);
+            }
+        }
+
         request.getSession().setAttribute("listTalent", talentFilter);
         request.getRequestDispatcher("Talent.jsp").forward(request, response);
     }

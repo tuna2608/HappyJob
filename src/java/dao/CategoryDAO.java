@@ -5,6 +5,7 @@
 package dao;
 
 import entity.Category;
+import entity.TalentCategory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -62,12 +63,37 @@ public class CategoryDAO {
         return null;
     }
     
+    public ArrayList<TalentCategory> getTalentByCategoryId(int categoryID) {
+        ArrayList<TalentCategory> tcList = new ArrayList<TalentCategory>();
+        String sql = "SELECT * FROM TalentCategory where categoryID = ?;";
+        
+        try {
+            conn = (Connection) new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, categoryID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                tcList.add(new TalentCategory(
+                        rs.getInt(1),
+                        rs.getInt(2)
+                ) 
+                );
+            }
+            return tcList;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
 
     public static void main(String[] args) {
         CategoryDAO dao = new CategoryDAO();
-        List<Category> a = dao.getListAllCategories();
-        for (Category account : a) {
-            System.out.println(account);
+        List<TalentCategory> tdList = dao.getTalentByCategoryId(0);
+        for (TalentCategory a : tdList) {
+            System.out.println(a);
         }
         System.out.println("ok");
     }

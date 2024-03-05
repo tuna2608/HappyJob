@@ -4,7 +4,9 @@
  */
 package hoang;
 
+import dao.CategoryDAO;
 import dao.TalentDAO;
+import entity.Category;
 import entity.Talent;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -57,12 +60,10 @@ public class ListTalentServlet extends HttpServlet {
         ArrayList<Talent> lTalent = td.listAllTalentActive();
         System.out.println(lTalent);
         
-        int pageSize = 10;
-        int numPage = 1;
+        CategoryDAO ct = new CategoryDAO();
+        List<Category> clist = ct.getListAllCategories();
         
-        request.getSession().setAttribute("pageSize", pageSize);
-        request.getSession().setAttribute("numPage", numPage);
-        
+        request.getSession().setAttribute("listCategory", clist);
         request.getSession().setAttribute("listTalent", lTalent);
         request.getRequestDispatcher("Talent.jsp").forward(request, response);
     }
@@ -85,11 +86,6 @@ public class ListTalentServlet extends HttpServlet {
         TalentDAO td = new TalentDAO();
         ArrayList<Talent> tList = td.searchTalent(keyParam);
 
-        int pageSize = 10;
-        int numPage = 1;
-        
-        request.getSession().setAttribute("pageSize", pageSize);
-        request.getSession().setAttribute("numPage", numPage);
         
         request.getSession().setAttribute("listTalent", tList);
         response.sendRedirect("Talent.jsp");

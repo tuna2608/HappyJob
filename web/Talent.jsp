@@ -19,10 +19,12 @@
         <c:set var="pagesize" value="8"/>
     </c:if>
 
-    <c:set var="numpage" value="${(listTalent.size()/pagesize)+1}"/>
+    <c:set var="numpage" value="${(listTalent.size()/8)+1}"/>
 
     <c:set var="typeFil" value="${param.type}"/>
-
+    <c:set var="typeRating" value="${param.typeRating}"/>
+    <c:set var="typePrice" value="${param.typePrice}"/>
+    <c:set var="typeCategory" value="${param.typeCategory}"/>
 
     <div class="container">
         <div class="row mb-5 justify-content-center">
@@ -68,23 +70,22 @@
         <div class="col-6 text-center text-md-right">
             <div class="custom-pagination ml-auto">
                 <c:if test="${page != 1}">
-                    <a href="?page=${(page-1)}&pagesize=${pagesize}&type=${typeFil}" class="prev">Prev</a> 
+                    <a href="?page=${(page-1)}&pagesize=${pagesize}&typePrice=${typePrice}&typeRating=${typeRating}&typeCategory=${typeCategory}" class="prev">Prev</a> 
                 </c:if>
                 <div class="d-inline-block">
-                    <c:forEach var="p" begin="1" end="${numpage}">
+                    <c:forEach var="p" begin="1" end="${numpage-1}">
                         <c:if test="${p == page}">
-                            <a href="?page=${p}&pagesize=${pagesize}&type=${typeFil}" class="mx-2 active">${p}</a>
+                            <a href="?page=${p}&pagesize=${pagesize}&typePrice=${typePrice}&typeRating=${typeRating}&typeCategory=${typeCategory}" class="mx-2 active">${p}</a>
                         </c:if>
                         <c:if test="${p != page}">
-                            <a href="?page=${p}&pagesize=${pagesize}&type=${typeFil}" class="mx-2 ">${p}</a>
+                            <a href="?page=${p}&pagesize=${pagesize}&typePrice=${typePrice}&typeRating=${typeRating}&typeCategory=${typeCategory}" class="mx-2 ">${p}</a>
                         </c:if>
-                        <!--<A href="?page=${(page+p)}&pagesize=${pagesize}" class="mx-2">${page+p}</a>-->
                     </c:forEach>
                 </div>
-                <c:if test="${page != numpage}">
-                    <a href="?page=${(page+1)}&pagesize=${pagesize}&type=${typeFil}" class="next">Next</a> 
+                    
+                <c:if test="${page != numpage-1}">
+                    <a href="?page=${(page+1)}&pagesize=${pagesize}&typePrice=${typePrice}&typeRating=${typeRating}&typeCategory=${typeCategory}" class="prev">Next</a> 
                 </c:if>
-                <!--<a href="#" class="next">Next</a>-->
             </div>
         </div>
     </div>
@@ -92,7 +93,7 @@
 </section>
 
 
-<section class="py-5 bg-image overlay-primary fixed overlay" style="background-image: url('images/hero_1.jpg');">
+<!--<section class="py-5 bg-image overlay-primary fixed overlay" style="background-image: url('images/hero_1.jpg');">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-8">
@@ -104,7 +105,7 @@
             </div>
         </div>
     </div>
-</section>
+</section>-->
 
 
 
